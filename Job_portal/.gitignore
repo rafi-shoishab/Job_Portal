@@ -1,0 +1,17 @@
+# virtual environment
+.venv/
+venv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# database
+db.sqlite3
+
+# mac
+.DS_Store
+
+# editor
+.vscode/
+.idea/
