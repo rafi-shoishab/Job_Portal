@@ -1,76 +1,92 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %} 
-  {{ job.job_title }} - Job Portal
-{% endblock %} 
+{% block title %}
+  Add Job - Job Portal
+{% endblock %}
 
-<!-- Page Container --> 
-{% block content %} 
-  <h1 class="text-3xl font-bold text-center">Add Job</h1> 
+<!-- Page Container -->
+{% block content %}
+  <div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-lg shadow">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-600">Add New Job</h2>
 
-  <div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-lg shadow"> 
-    <h2 class="text-3xl font-bold mb-6 text-center text-blue-600">Add New Job</h2> 
+    <form method="POST" enctype="multipart/form-data" class="space-y-5">
+      {% csrf_token %}
 
-    <form class="space-y-5">
-      <div> 
+      <!-- Job Title -->
+      <div>
         <label class="block font-medium mb-1">Job Title</label>
-        <input type="text" placeholder="Frontend Developer" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
-      </div> 
+        <input type="text" name="title" placeholder="Enter Job Title. . ." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
+      </div>
 
-      <div> 
+      <!-- Company Name -->
+      <div>
         <label class="block font-medium mb-1">Company Name</label>
-        <input type="text" placeholder="ABC Software Ltd." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
-      </div> 
-
-      <div> 
-        <label class="block font-medium mb-1">Company Logo</label> 
-        <input type="file" class="w-full border rounded-lg px-4 py-2 bg-white" /> 
-      </div> 
-
-      <div> 
-        <label class="block font-medium mb-1">Job Location</label> 
-        <input type="text" placeholder="Dhaka / Remote" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
-      </div> 
-
-      <div>
-        <label class="block font-medium mb-1">Job Type</label> 
-        <select class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-          <option value="">Select Category</option> 
-          <option value="remote">Remote</option> 
-          <option value="onsite">On-Site</option> 
-          <option value="hybrid">Hybrid</option> 
-        </select> 
+        <input type="text" name="company_name" placeholder="Enter Company Name. . ." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
       </div>
 
+      <!-- Company Logo -->
       <div>
-        <label class="block font-medium mb-1">Vacancy</label> 
-        <input type="number" placeholder="5" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
+        <label class="block font-medium mb-1">Company Logo</label>
+        <input type="file" name="company_logo" class="w-full border rounded-lg px-4 py-2 bg-white" />
       </div>
 
+      <!-- Job Location -->
       <div>
-        <label class="block font-medium mb-1">Category</label> 
-        <select class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-          <option value="">Select Category</option> 
-          <option value="fulltime">Full Time</option> 
-          <option value="parttime">Part Time</option> 
-          <option value="intern">Internship</option> 
-          <option value="tontract">Contractual</option> 
+        <label class="block font-medium mb-1">Job Location</label>
+        <input type="text" name="location" placeholder="Enter Job Location. . ." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <!-- Job Type -->
+      <div>
+        <label class="block font-medium mb-1">Job Type</label>
+        <select name="type" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+          <option value="">Select Type</option>
+          <option value="remote">Remote</option>
+          <option value="onsite">On-Site</option>
+          <option value="hybrid">Hybrid</option>
         </select>
       </div>
 
+      <!-- Vacancy -->
+      <div>
+        <label class="block font-medium mb-1">Vacancy</label>
+        <input type="number" name="openings" placeholder="No. of Job Openings. . ." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <!-- Job Catagory -->
+      <div>
+        <label class="block font-medium mb-1">Category</label>
+        <select name="category" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+          <option value="">Select Category</option>
+          <option value="fulltime">Full Time</option>
+          <option value="parttime">Part Time</option>
+          <option value="intern">Internship</option>
+          <option value="tontract">Contractual</option>
+        </select>
+      </div>
+
+      <!-- Job Description -->
       <div>
         <label class="block font-medium mb-1">Job Description</label>
-        <textarea rows="4" placeholder="Write job responsibilities and requirements..." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"></textarea>
+        <textarea name="description" rows="4" placeholder="Write job responsibilities and requirements . . ." class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"></textarea>
       </div>
 
+      <!-- Skills -->
+      <div>
+        <label class="block font-medium mb-1">Skills</label>
+        <input type="text" name="skill" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. React, Django, SQL. . ." />
+      </div>
+
+      <!-- Salary -->
       <div>
         <label class="block font-medium mb-1">Salary</label>
-        <input type="text" placeholder="৳40,000 - ৳60,000" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
+        <input type="text" name="salary" placeholder="Enter Salary" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
       </div>
 
+      <!-- Deadline -->
       <div>
-        <label class="block font-medium mb-1">Submission Deadline</label>
-        <input type="date" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
+        <label class="blskillock font-medium mb-1">Submission Deadline</label>
+        <input type="date" name="deadline" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
       </div>
 
       <div class="text-center">

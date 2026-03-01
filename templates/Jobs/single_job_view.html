@@ -11,8 +11,8 @@
 <!-- Header -->
 <div class="bg-blue-600 text-white py-10">
   <div class="max-w-7xl mx-auto px-6">
-    <h1 class="text-4xl font-bold">Frontend Developer</h1>
-    <p class="mt-2 text-lg">ABC Software Ltd. · Dhaka · Remote</p>
+    <h1 class="text-4xl font-bold">{{ job.job_title }}</h1>
+    <p class="mt-2 text-lg">{{ job.company_name}} {{ job.job_location }} {{ job.category }}</p>
   </div>
 </div>
 
@@ -66,8 +66,8 @@
     <!-- Job Summary -->
     <div class="space-y-3 text-sm text-gray-700">
       <p><strong>Job Type:</strong> Full Time</p>
-      <p><strong>Category:</strong> IT / Software</p>
       <p><strong>Vacancy:</strong> 3</p>
+      <p><strong>Job Category:</strong> Remote</p>
       <p><strong>Salary:</strong> ৳50,000 - ৳70,000</p>
       <p><strong>Deadline:</strong> 30 March 2026</p>
       <p><strong>Location:</strong> Dhaka / Remote</p>
