@@ -48,11 +48,11 @@ def all_job(request):
     
     all_jobs = Job.objects.all()
     
-    context = {
-        'jobs': all_jobs
+    context_dict = {
+        'jobs': all_jobs 
     }
     
-    return render(request, 'Jobs/all_job.html', context) 
+    return render(request, 'Jobs/all_job.html', context_dict) 
 
 def browse_job(request):
     
@@ -62,13 +62,39 @@ def single_job_view(request):
     
     return render(request, 'Jobs/single_job_view.html')
 
-def edit_job(request):
-    
-    return render(request, 'Jobs/edit_job.html')
+def edit_job(request, job_id):
 
-def delete_job(request):
+    job_data = get_object_or_404(Job, id=job_id)
+
+    if request.method =='POST':
+        job_data.job_title = request.POST.get('title')
+        job_data.company_name = request.POST.get('company_name')
+        if request.FILES.get('company_logo'):
+            job_data.company_logo = request.FILES.get('company_logo')
+        job_data.job_location = request.POST.get('location')
+        job_data.job_type = request.POST.get('type')
+        job_data.vacancy = request.POST.get('openings')
+        job_data.category = request.POST.get('category')
+        job_data.job_description = request.POST.get('description')
+        job_data.skills = request.POST.get('skill')
+        job_data.salary = request.POST.get('salary')
+        job_data.deadline = request.POST.get('deadline')
+        
+        job_data.save()
+
+        return redirect('all_job')
     
-    return render(request, 'Jobs/edit_job.html')
+    context_dict = {
+        'job' : job_data
+    }
+    return render(request, 'Jobs/edit_job.html', context_dict)
+
+
+def delete_job(request, job_id):
+
+    job = Job.objects.filter(id=job_id)
+    job.delete()
+    return redirect('all_job')
 
 def about_us(request):
     
