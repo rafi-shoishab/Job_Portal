@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect 
 from django.contrib import messages 
-from .models import Job 
+from .models import Job
+from django.db.models import Q 
 
 # Create your views here.
 
@@ -45,8 +46,17 @@ def add_job(request):
     return render(request, 'Jobs/add_job.html')
 
 def all_job(request):
+
+    sort = request.GET.get('sort')
+
+    if sort == 'asc':
+        all_jobs = Job.objects.filter().order_by('job_title')
     
-    all_jobs = Job.objects.all()
+    elif sort =='desc':
+        all_jobs = Job.objects.filter().order_by('-job_title')
+
+    else:
+        all_jobs = Job.objects.all()
     
     context_dict = {
         'jobs': all_jobs 
@@ -55,12 +65,21 @@ def all_job(request):
     return render(request, 'Jobs/all_job.html', context_dict) 
 
 def browse_job(request):
-    
-    all_jobs = Job.objects.all()
-    
+
+    query = request.GET.get('q')
+
+    if query:
+        all_jobs = Job.objects.filter(
+            Q(job_title__icontains = query) |
+            Q(company_name__icontains = query)
+        )
+
+    else:
+        all_jobs = Job.objects.all()
     
     context_dict = {
-        'jobs' : all_jobs
+        'jobs' : all_jobs,
+        'query' : query
     }
 
     return render(request, 'Jobs/browse_job.html', context_dict)
