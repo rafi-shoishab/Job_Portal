@@ -17,15 +17,15 @@
     </form>
     <!-- GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% if jobs %}
-      {% for job in jobs %}
+      {% if jobs %} <!-- for query filter -->
+      {% for job in jobs %} <!-- for variable in diictionary key-->
         <!-- CARD -->
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition">
           <div class="h-16 w-16 mb-4 bg-gray-200 rounded flex items-center justify-center">
             <img src="{{ job.company_logo.url }}" alt="Company Logo" class="w-100% h-100% object-cover rounded-lg border" />
           </div>
 
-          <h3 class="text-xl font-semibold">{{ job.job_title }}</h3>
+          <h3 class="text-xl font-semibold">{{ job.job_title }}</h3> <!-- {{ variable.model name }}-->
           <p class="text-gray-600 text-sm">{{ job.company_name }}</p>
 
           <p class="text-gray-500 text-sm mt-1">{{ job.category }}</p>

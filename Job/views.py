@@ -1,7 +1,7 @@
-from django.shortcuts import get_object_or_404, render, redirect 
-from django.contrib import messages 
-from .models import Job
-from django.db.models import Q 
+from django.shortcuts import get_object_or_404, render, redirect # db access
+from django.contrib import messages # for message sweet alert
+from .models import Job # model class 
+from django.db.models import Q # for query 
 
 # Create your views here.
 
@@ -12,7 +12,7 @@ def home(request):
 def add_job(request):
     
     if request.method == "POST":
-        title = request.POST.get('title')
+        title = request.POST.get('title') # variable = request.POST.get('html name')
         name = request.POST.get('company_name')
         logo = request.FILES.get('company_logo')
         address = request.POST.get('location')
@@ -25,7 +25,7 @@ def add_job(request):
         submit = request.POST.get('deadline')
         
         Job.objects.create (
-            job_title = title,
+            job_title = title, # modelname = variable
             company_name = name,
             company_logo = logo,
             job_location = address,
@@ -59,7 +59,7 @@ def all_job(request):
         all_jobs = Job.objects.all()
     
     context_dict = {
-        'jobs': all_jobs 
+        'jobs': all_jobs # dict = { 'key' : variable}
     }
     
     return render(request, 'Jobs/all_job.html', context_dict) 
@@ -69,7 +69,7 @@ def browse_job(request):
     query = request.GET.get('q')
 
     if query:
-        all_jobs = Job.objects.filter(
+        all_jobs = Job.objects.filter( 
             Q(job_title__icontains = query) |
             Q(company_name__icontains = query)
         )

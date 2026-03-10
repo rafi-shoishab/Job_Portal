@@ -34,9 +34,9 @@
         </thead>
 
         <tbody class="text-sm">
-          {% for job in jobs %}
+          {% for job in jobs %} <!-- for index in dictionary key-->
             <tr class="hover:bg-gray-50">
-              <td class="px-4 py-3 border">{{ job.id }}</td>
+              <td class="px-4 py-3 border">{{ job.id }}</td> <!-- {{ index.model name }}-->
               <td class="px-4 py-3 border font-medium">{{ job.job_title }}</td>
               <td class="px-4 py-3 border w-[150px]">
                 <img src="{{ job.company_logo.url }}" alt="company_logo" />
