@@ -1,4 +1,5 @@
 from django.db import models 
+from accounts.models import RecruiterProfile
 
 # Create your models here.
 class Job(models.Model):
@@ -16,6 +17,7 @@ class Job(models.Model):
         ('hybrid', 'Hybrid')
     )
     
+    recruiter = models.ForeignKey(RecruiterProfile, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=100)
     company_name = models.CharField(max_length=100)
     company_logo = models.ImageField(upload_to='company_logos/', null=True, blank=True)

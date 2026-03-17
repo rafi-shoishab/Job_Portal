@@ -22,7 +22,10 @@ def add_job(request):
         package = request.POST.get('salary')
         submit = request.POST.get('deadline')
         
+        recruiter_profile = request.user.recruiterprofile 
+        
         Job.objects.create (
+            recruiter = recruiter_profile,
             job_title = title, # modelname = variable
             company_name = name,
             company_logo = logo,
@@ -33,12 +36,12 @@ def add_job(request):
             job_description = job_details,
             skills = skill,
             salary = package,
-            deadline = submit
+            deadline = submit 
         ) 
         
         messages.success(request, 'Job added succesfully!')
         
-        return redirect('all_job')
+        return redirect('profile')
 
 
     return render(request, 'Jobs/add_job.html')
@@ -62,7 +65,7 @@ def edit_job(request, job_id):
         
         job_data.save()
         
-        return redirect('all_job')
+        return redirect('profile')
         
     context = {
         'job' : job_data 
@@ -75,11 +78,7 @@ def delete_job(request, job_id):
 
     job = Job.objects.filter(id=job_id)
     job.delete()
-    return redirect('all_job')
-
-def about_us(request):
-    
-    return render(request, 'Job/about_us.html')
+    return redirect('profile')
 
 def browse_job(request):
 

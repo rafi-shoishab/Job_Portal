@@ -7,5 +7,4 @@ urlpatterns = [
     path('delete_job/<int:job_id>', views.delete_job, name='delete_job'),
     path('single_job_view/<int:job_id>', views.single_job_view, name='single_job_view'),
     path('edit_job/<int:job_id>', views.edit_job, name='edit_job'),
-    path('about_us/', views.about_us, name='about_us'),
 ]

@@ -31,8 +31,8 @@ def register(request):
     
     if request.method == 'POST':
         user_name = request.POST.get('username') # 
-        fname = request.POST.get('fullname') 
-        lname = request.POST.get('first_name') 
+        fname = request.POST.get('first_name') 
+        lname = request.POST.get('last_name') 
         mail = request.POST.get('email')
         role = request.POST.get('role') 
         pro_pic = request.FILES.get('profile_photo')
@@ -52,7 +52,7 @@ def register(request):
             return redirect('register')
         
         user = CustomUser.objects.create_user(
-            username = user_name,
+            username = user_name, # 
             email = mail,
             password = pass_word,            
         )
@@ -67,7 +67,7 @@ def register(request):
         if role == 'recruiter':
             RecruiterProfile.objects.create(user = user)
         elif role == 'job_seeker':
-            RecruiterProfile.objects.check(user = user)
+            JobseekerProfile.objects.create(user = user)
         
         messages.success(request, 'registered successfully') 
         return redirect ('login') 
@@ -76,15 +76,15 @@ def register(request):
 
 def log_in(request):
     if request.method == 'POST':
-        email_username = request.POST.get('email_username')
-        pass_word = request.POST.get('password') #
+        email_username = request.POST.get('email_username') #
+        pass_word = request.POST.get('password') 
         
         # Try email first, then username
         try:
             user_input = CustomUser.objects.get(email = email_username) #
             user_name = user_input.username
         except CustomUser.DoesNotExist: #
-            user_name = user_input #
+            user_name = email_username #
             
         user = authenticate(request, username = user_name, password = pass_word) #
             
@@ -99,23 +99,24 @@ def log_in(request):
 
 @login_required
 def profile(request):
-    
-    sort = request.GET.get('sort') # 
-
-    if sort == 'asc':
-        all_jobs = Job.objects.filter().order_by('job_title')
-    
-    elif sort =='desc':
-        all_jobs = Job.objects.filter().order_by('-job_title')
-
+    if request.user.role == 'recruiter':
+        # ✅ Fixed: recruiterprofile lowercase + .recruiterprofile
+        all_jobs = Job.objects.filter(recruiter=request.user.recruiterprofile)
     else:
-        all_jobs = Job.objects.all()
+        # ✅ Fixed: Job.objects.none()
+        all_jobs = Job.objects.none()
     
-    context_dict = {
-        'jobs': all_jobs # dict = { 'key' : variable}
-    }
+    sort = request.GET.get('sort')
+    if sort == 'asc':
+        all_jobs = all_jobs.order_by('job_title')
+    elif sort == 'desc':
+        all_jobs = all_jobs.order_by('-job_title')
+    # Default: all_jobs remains as-is (recruiter's jobs or empty)
     
-    return render(request, 'accounts/profile.html', context_dict)
+    context = {
+        'jobs': all_jobs, # dict = { 'key' : variable}
+        }
+    return render(request, 'accounts/profile.html', context)
 
 @login_required
 def log_out(request):

@@ -6,24 +6,21 @@
 
     <!-- Auth Buttons -->
     <div class="space-x-3">
-      <a href="{% url 'profile' %}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Profile</a>
-
-      <a href="#" class="px-4 py-2 bg-red-200 rounded hover:bg-red-300">Logout</a>
-
+      <a href="{% url 'home' %}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Home</a>
+      <a href="{% url 'browse_job' %}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Find Jobs</a>
       <a href="{% url 'login' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Login</a>
-
       <a href="{% url 'register' %}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Register</a>
+      <a href="{% url 'add_job' %}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Add Job</a>
+      <a href="{% url 'profile' %}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Profile</a>
+      <a href="{% url 'logout' %}" class="px-4 py-2 bg-red-200 rounded hover:bg-red-300">Logout</a>
     </div>
   </div>
 </nav>
 
 <nav class="bg-white-100">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-end items-center">
-        <ul class="flex space-x-6 font-medium">
-            <li><a href= "{% url 'home' %}" class="hover:text-blue-600">Home</a></li>
-            <li><a href= "{% url 'add_job' %}" class="hover:text-blue-600">Add Job</a></li>
-            <li><a href="{% url 'browse_job' %}" class="hover:text-blue-600">Browse Jobs</a></li>
-            <li><a href="{% url 'about_us' %}" class="hover:text-blue-600">About Us</a></li>
-        </ul>
-    </div>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-end items-center">
+    <ul class="flex space-x-6 font-medium">
+      <li></li>
+    </ul>
+  </div>
 </nav>
