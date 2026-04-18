@@ -28,6 +28,166 @@ django-crud-job_portal/
 └── requirements.txt
 ```
 
+need optimized readme for github = https://github.com/rafi-shoishab/Job_Portal.git
+
+# Job Portal 
+## 🏗 Project Structure Overview
+```
+django-crud-job_portal/
+│
+├── core/
+│   ├── settings.py        # Django project settings
+│   ├── urls.py            # Project URL routing
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── job_portal/            # Main Django App
+│   ├── models.py          # Job model
+│   ├── views.py           # CRUD logic
+│   ├── urls.py            # App URLs
+│   ├── forms.py           # Job forms
+│   └── migrations/
+│
+├── templates/             # HTML templates
+│   ├── index.html
+│   ├── job_create.html
+│   ├── job_update.html
+│   └── job_list.html
+│
+├── static/                # CSS / JS files
+│
+├── manage.py
+└── requirements.txt
+```
+## 1. set up Django
+### 1.0 Clone Repository
+```
+git clone https://github.com/rafi-shoishab/django-job_portal.git
+cd django-job_portal
+```
+### 1.1 Create Virtual Environment
+
+Mac/Linux
+```
+python3 -m venv .venv
+source .venv/bin/activate
+```
+Windows
+```
+python -m venv .venv
+.venv\Scripts\activate
+```
+### 1.2 Install Dependencies
+```
+pip install -r requirements.txt
+pip install django
+pip install pillow
+```
+### Step 1.3 — Create Django Project
+
+```
+django-admin startproject Name_ID_JobPortal 
+```
+
+### Step 1.4 — Create Django App
+
+```
+python manage.py startapp acounts
+```
+
+### Step 1.5 — Register App in Project settings.py
+
+File: `Name_ID_JobPortal/settings.py`
+
+Add the app inside `INSTALLED_APPS`:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'accounts',
+]
+```
+
+### Step 1.6 — Configure Template Directory in project settings.py
+
+File: `Name_ID_JobPortal/settings.py`
+
+Update the `TEMPLATES` section:
+
+```python
+TEMPLATES = [
+{
+...
+'DIRS': [ (BASE_DIR / 'templates')],
+... 
+}
+]
+```
+
+### Step 1.7 — Create App URL Configuration
+
+Create file: `accounts/urls.py`
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path(' ', views.home, name='home'),
+]
+```
+
+### Step 1.8 — Connect App URLs to Project URLs
+
+File: `Name_ID_JobPortal/urls.py`
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),
+]
+```
+
+### Step 1.9 — Create View in app
+
+File: `accounts/views.py`
+
+```python
+from django.http import HttpResponse
+
+def hello(request):
+    return HttpResponse("Hello Django")
+```
+### Step 1.10 — Create HTML Template
+
+File: `templates/accounts/index.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Home</title>
+</head>
+<body>
+    <h1>Hello Django Template 🎉</h1>
+</body>
+</html>
+```
+
+### Step 1.11 — Create View to Render Template
+
+File: `accounts/views.py`
+
+```python
+from django.shortcuts import render
+
+def home(request):
+    return render(request, "accounts/index.html")
+```
+
+
 ## ⚡ 1. Setup Django (Run Project)
 Clone Repository
 ```
