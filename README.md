@@ -1,35 +1,3 @@
-# Job Portal 
-## 🏗 Project Structure Overview
-```
-django-crud-job_portal/
-│
-├── core/
-│   ├── settings.py        # Django project settings
-│   ├── urls.py            # Project URL routing
-│   ├── asgi.py
-│   └── wsgi.py
-│
-├── job_portal/            # Main Django App
-│   ├── models.py          # Job model
-│   ├── views.py           # CRUD logic
-│   ├── urls.py            # App URLs
-│   ├── forms.py           # Job forms
-│   └── migrations/
-│
-├── templates/             # HTML templates
-│   ├── index.html
-│   ├── job_create.html
-│   ├── job_update.html
-│   └── job_list.html
-│
-├── static/                # CSS / JS files
-│
-├── manage.py
-└── requirements.txt
-```
-
-need optimized readme for github = https://github.com/rafi-shoishab/Job_Portal.git
-
 # Job Portal 
 ## 🏗 Project Structure Overview
 ```
