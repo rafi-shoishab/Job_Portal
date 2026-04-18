@@ -1,31 +1,50 @@
 # Job Portal 
 ## 🏗 Project Structure Overview
-```
-django-crud-job_portal/
+```   
+Job_portal/
 │
-├── core/
+├── Job_portal/            # Project settings & root routing
 │   ├── settings.py        # Django project settings
 │   ├── urls.py            # Project URL routing
 │   ├── asgi.py
 │   └── wsgi.py
 │
-├── job_portal/            # Main Django App
-│   ├── models.py          # Job model
+├── Jobs/                  # Django Job App: Logic & Models
+│   ├── models.py          # Job model data schema
 │   ├── views.py           # CRUD logic
 │   ├── urls.py            # App URLs
-│   ├── forms.py           # Job forms
-│   └── migrations/
+│   ├── forms.py           # Job forms Input handling
+│   └── migrations/        # Database history
+├── accounts/              # Django Accounts App: Logic & Models
+│   ├── models.py          # Accounts model data schema
+│   ├── views.py           # CRUD logic
+│   ├── urls.py            # App URLs
+│   ├── forms.py           # Job forms Input handling
+│   └── migrations/        # Database history
 │
 ├── templates/             # HTML templates
-│   ├── index.html
-│   ├── job_create.html
-│   ├── job_update.html
-│   └── job_list.html
+│    ├── Jobs
+│    │      ├── index.html
+│    │      ├── job_create.html
+│    │      ├── job_update.html
+│    │      └── job_list.html
+│    │
+│    ├── accounts
+│    │      ├── index.html
+│    │      ├── job_create.html
+│    │      ├── job_update.html
+│    │      └── job_list.html
+│    │
+│    └── applications
+│           ├── index.html
+│           ├── job_create.html
+│           ├── job_update.html
+│           └── job_list.html
 │
-├── static/                # CSS / JS files
+├── static/                # CSS / JS / Images files 
 │
-├── manage.py
-└── requirements.txt
+├── manage.py              # Django CLI
+└── requirements.txt       # Dependencies
 ```
 ## 1. set up Django
 ### 1.0 Clone Repository
