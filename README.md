@@ -15,6 +15,7 @@ Job_portal/
 │   ├── urls.py            # App URLs
 │   ├── forms.py           # Job forms Input handling
 │   └── migrations/        # Database history
+│
 ├── accounts/              # Django Accounts App: Logic & Models
 │   ├── models.py          # Accounts model data schema
 │   ├── views.py           # CRUD logic
@@ -22,18 +23,19 @@ Job_portal/
 │   ├── forms.py           # Job forms Input handling
 │   └── migrations/        # Database history
 │
-├── templates/             # HTML templates
-│    ├── Jobs
-│    │      ├── index.html
-│    │      ├── job_create.html
-│    │      ├── job_update.html
-│    │      └── job_list.html
-│    │
+├── templates/             # HTML templates 
 │    ├── accounts
 │    │      ├── index.html
-│    │      ├── job_create.html
-│    │      ├── job_update.html
-│    │      └── job_list.html
+│    │      ├── login.html
+│    │      ├── register.html
+│    │      └── profile.html
+│    │
+│    ├── Jobs
+│    │      ├── add_job.html                 # form 
+│    │      ├── all_job.html                 # table
+│    │      ├── browse_job.html              # card
+│    │      ├── edit_job.html
+│    │      └── single_job_view.html
 │    │
 │    └── applications
 │           ├── index.html
